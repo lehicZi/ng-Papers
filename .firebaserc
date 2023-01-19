@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ngpapers-9d895": {
+      "hosting": {
+        "ng-papers": [
+          "ngpapers-9d895"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ngpapers-9d895"
+  }
+}

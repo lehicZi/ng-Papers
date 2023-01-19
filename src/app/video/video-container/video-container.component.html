@@ -1,0 +1,32 @@
+<mat-tab-group (selectedTabChange)="changeState($event)" #tabGroup>
+
+    <mat-tab label="A ajouter">
+        
+        <app-add-video [currentTab]="'TOADD'"></app-add-video>
+        <app-video-list [currentTab]="'TOADD'"></app-video-list>
+
+    </mat-tab>
+
+    <mat-tab label="A voir"> 
+
+        <app-add-video [currentTab]="'ADDED'"></app-add-video>
+        <app-video-list [currentTab]="'ADDED'"></app-video-list> 
+
+    </mat-tab>
+
+
+    <mat-tab label="Tiré"> 
+        
+        <app-add-video [currentTab]="'TOSEE'"></app-add-video>
+        <app-video-list [currentTab]="'TOSEE'"></app-video-list>
+
+    </mat-tab>
+
+    <mat-tab label="Vus"> 
+        
+        <app-add-video [currentTab]="'SEEN'"></app-add-video>
+        <app-video-list [currentTab]="'SEEN'"></app-video-list> 
+
+    </mat-tab>
+
+</mat-tab-group>

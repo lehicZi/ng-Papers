@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+      <p [class]="getTypeClass()">{{typeLabel}}</p>
+      
+      <mat-card-title>{{video.title}}</mat-card-title>
+      
+    </mat-card-header>
+    <div class="card-content">
+      <mat-slide-toggle [(ngModel)]="dispo" (click)="changeVideoDispo($event)">Disponibilité</mat-slide-toggle>
+    </div>
+    <mat-card-actions align="end">
+      <button mat-button color="warn" (click)="DeleteVideo($event)">Supprimer</button>
+      <button *ngIf="video.status != 'SEEN'" mat-button #statusBtn (click)="changeStatus($event)">{{btnLabel}}</button>
+    </mat-card-actions>
+</mat-card>

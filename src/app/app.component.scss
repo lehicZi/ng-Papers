@@ -1,0 +1,13 @@
+mat-sidenav-container{
+    height: 100%;
+}
+
+.toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+
+.content {
+    z-index: 2;
+}

@@ -1,0 +1,135 @@
+<mat-card *ngIf="filmDetail && !isLoading; else seriesCard">
+    <mat-card-header>
+        <mat-card-title>{{filmDetail.title}}<span class="type-film">Film</span> </mat-card-title>
+        <mat-card-subtitle>Titre original : {{filmDetail.original_title}} 
+            <span *ngIf="filmDetail.production_countries[0]">({{filmDetail.production_countries[0].name}})</span>
+        </mat-card-subtitle>
+        
+    </mat-card-header>
+
+        <div class="mid-card">
+            <img mat-card-image src={{filmDetail.poster_path}} alt="Poster of the video">
+            <div class="mid-text">
+                <mat-slide-toggle [(ngModel)]="video.dispo" (click)="changeVideoDispo()">Disponibilité</mat-slide-toggle>
+                <p>Durée : {{filmDetail.runtime | hourMin}}</p>
+                <p>Date de sortie : {{filmDetail.release_date | date:'dd/MM/yyyy'}}</p>
+                <p>Note : {{filmDetail.vote_average | number:'1.0-2'}}/10</p>
+            </div>
+            
+        </div>
+    <mat-card-content>
+        <p>
+            Genres : <span *ngFor="let genre of filmDetail.genres; last as isLast"> 
+                        {{genre.name}}{{isLast ? '.':','}} 
+                    </span>
+        </p>
+        <p>
+            {{filmDetail.overview}}
+        </p>
+
+        <div class="rename" #renameDiv>
+            <mat-form-field #searchField style="margin-bottom: -1.25em">
+                <input #searchInput matInput [(ngModel)]="video.title" style="margin-bottom: -1.25em">
+            </mat-form-field>
+
+            <button mat-fab color="primary" aria-label="OK" (click)="okRename()" style="margin-left: 10px">
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="warn" (click)="deleteVideo()">Supprimer</button>
+      <button mat-button (click)="renameVideo()">Renommer</button>
+      <button mat-button (click)="goBack()">Retour</button>
+    </mat-card-actions>
+</mat-card>
+
+
+<ng-template #seriesCard>
+    <mat-card *ngIf="seriesDetail">
+        <mat-card-header>
+            <mat-card-title>{{seriesDetail.name}}<span class="type-series">Série</span> </mat-card-title>
+            <mat-card-subtitle>Titre original : {{seriesDetail.original_name}} 
+                <span *ngIf="seriesDetail.production_countries[0]">({{seriesDetail.production_countries[0].name}})</span>
+            </mat-card-subtitle>
+            
+        </mat-card-header>
+
+            <div class="mid-card">
+                <img mat-card-image src={{seriesDetail.poster_path}} alt="Poster of the video">
+                <div class="mid-text">
+                    <mat-slide-toggle [(ngModel)]="video.dispo" (click)="changeVideoDispo()">Disponibilité</mat-slide-toggle>
+                    <p>{{seriesDetail.number_of_episodes}} épisodes sur {{seriesDetail.number_of_seasons}} saisons</p>
+                    <p>Date de sortie : {{seriesDetail.first_air_date | date:'dd/MM/yyyy'}}</p>
+                    <p>Note : {{seriesDetail.vote_average | number:'1.0-2'}}/10</p>
+                    <p>Statut : {{seriesDetail.in_production ? 'En cours' : 'Terminée'}}</p>
+                </div>
+                
+            </div>
+        <mat-card-content>
+            <p class="network-list" *ngIf="seriesDetail.networks.length > 0">
+                Disponible sur : <img class="network-logo" *ngFor="let network of seriesDetail.networks" src={{network.logo_path}}>
+
+            <p>
+                Genres : <span *ngFor="let genre of seriesDetail.genres; last as isLast"> 
+                            {{genre.name}}{{isLast ? '.':','}} 
+                        </span>
+            </p>
+
+            <p>
+                {{seriesDetail.overview}}
+            </p>
+
+            <div class="rename" #renameDiv>
+                <mat-form-field #searchField style="margin-bottom: -1.25em">
+                    <input #searchInput matInput [(ngModel)]="video.title" style="margin-bottom: -1.25em">
+                </mat-form-field>
+
+                <button mat-fab color="primary" aria-label="OK" (click)="okRename()" style="margin-left: 10px">
+                    <mat-icon>done</mat-icon>
+                </button>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+        <button mat-button color="warn" (click)="deleteVideo()">Supprimer</button>
+        <button mat-button (click)="renameVideo()">Renommer</button>
+        <button mat-button (click)="goBack()">Retour</button>
+        </mat-card-actions>
+    </mat-card>
+
+</ng-template>
+
+<div class="loading" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="notFound && !isLoading">
+    <mat-card-header>
+        <mat-card-title>Vidéo introuvable, vérifiez votre connexion internet ou renommez la !</mat-card-title>
+        
+    </mat-card-header>
+
+        <div class="mid-card">
+            <div class="mid-text">
+                <mat-slide-toggle [(ngModel)]="video.dispo" (click)="changeVideoDispo()">Disponibilité</mat-slide-toggle>
+            </div>
+            
+        </div>
+    <mat-card-content>
+
+        <div class="rename" #renameDiv>
+            <mat-form-field #searchField style="margin-bottom: -1.25em">
+                <input #searchInput matInput [(ngModel)]="video.title" style="margin-bottom: -1.25em">
+            </mat-form-field>
+
+            <button mat-fab color="primary" aria-label="OK" (click)="okRename()" style="margin-left: 10px">
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+    <button mat-button color="warn" (click)="deleteVideo()">Supprimer</button>
+    <button mat-button (click)="renameVideo()">Renommer</button>
+    <button mat-button (click)="goBack()">Retour</button>
+    </mat-card-actions>
+</mat-card>

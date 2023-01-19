@@ -1,0 +1,28 @@
+mat-card{
+    margin: 5px;
+    :hover{
+        cursor: pointer;
+    }
+}
+
+.type-film{
+    border: 1px solid white;
+    color: white;
+    background-color: orangered;
+    border-radius: 25px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.type-series{
+    border: 1px solid white;
+    color: white;
+    background-color: purple;
+    border-radius: 25px;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+.card-content{
+    margin-left: 18px;
+}

@@ -1,0 +1,30 @@
+<mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+        <p>Ajouter un film/une série</p>
+    </mat-expansion-panel-header>
+
+    <section class="video-form">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addVideoForm">
+            <mat-form-field style="margin-bottom: -1.25em">
+                <mat-label>Titre</mat-label>
+                <input #titleInput
+                    matInput
+                    formControlName="title">
+            </mat-form-field>
+
+            <div class = 'buttons'>
+                <mat-radio-group aria-label="Type" formControlName="type">
+                    <mat-radio-button value="FILM">Film</mat-radio-button>
+                    <mat-radio-button value="SERIES">Série</mat-radio-button>
+                </mat-radio-group>
+
+                <mat-slide-toggle formControlName="dispo">Disponibilité</mat-slide-toggle>
+
+            </div>
+
+            <button type="submit" mat-raised-button color = "primary" [disabled]="addVideoForm.invalid" class="addBtn">Ajouter</button>
+        </form>
+    </section>
+
+
+</mat-expansion-panel>

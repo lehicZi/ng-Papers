@@ -1,0 +1,5 @@
+
+<app-video-item *ngFor="let video of videoList$ | async | sort: 'title'"
+ [video]="video"
+ [currentSate]="currentTab">
+</app-video-item>

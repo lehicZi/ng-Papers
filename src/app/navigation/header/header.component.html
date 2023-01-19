@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+
+    <span>Petits papiers</span>
+
+    <span class="spacer"></span>
+
+    <mat-form-field #searchField style="margin-bottom: -1.25em">
+        <input #searchInput matInput [(ngModel)]="searchQuerry" (keyup)="onWordTyped()">
+    </mat-form-field>
+
+    <button mat-icon-button aria-label="Search button with icon" (click)="onSearchClick()">
+        <mat-icon>search</mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Info button with icon" (click)="openInfos()">
+        <mat-icon>info</mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Menu button with icon" (click)="onToggleSidenav()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+</mat-toolbar>
